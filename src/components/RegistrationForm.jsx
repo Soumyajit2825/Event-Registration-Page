@@ -215,6 +215,7 @@ const RegistrationForm = ({ onAddStudent }) => {
                         <option value="EEE">EEE</option>
                         <option value="EE">EE</option>
                         <option value="ME">ME</option>
+                        {/* IT, MCA, AEIE */}
                     </select>
                 </div>
 
