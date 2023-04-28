@@ -32,7 +32,7 @@ function App() {
 
 
   return (
-    <div className="flex h-full md:h-screen flex-col bg-indigo-200 ">
+    <div className="flex h-full md:h-full flex-col bg-indigo-200 ">
       <Header />
       <div className=" h-full  flex flex-col md:grid md:grid-cols-12 overflow-y-hidden ">
         <div className="flex  md:items-center justify-center  py-8 md:py-2 md:px-10 md:col-span-4   ">
