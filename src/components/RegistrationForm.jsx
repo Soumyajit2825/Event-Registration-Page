@@ -193,7 +193,7 @@ const RegistrationForm = ({ onAddStudent }) => {
 
 
 
-    if (memberCount <= 3 && !pay){
+    if (memberCount <= 4 && !pay){
     return (
         <>
             <form className="flex accent-blue-600 flex-col w-[335px] px-4 py-4 sm:w-[380px] sm:px-6 sm:py-6 md:w-full md:px-8 md:py-10 rounded-xl shadow-2xl bg-gradient-to-r from-violet-500 to-indigo-500">
@@ -215,6 +215,9 @@ const RegistrationForm = ({ onAddStudent }) => {
                         <option value="EEE">EEE</option>
                         <option value="EE">EE</option>
                         <option value="ME">ME</option>
+                        <option value="IT">IT</option>
+                        <option value="MCA">MCA</option>
+                        <option value="AEIE">AEIE</option>
                         {/* IT, MCA, AEIE */}
                     </select>
                 </div>
