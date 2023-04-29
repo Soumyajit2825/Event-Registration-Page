@@ -35,7 +35,7 @@ function App() {
     <div className="flex h-full md:h-full flex-col bg-indigo-200 ">
       <Header />
       <div className=" md:h-[100vh]  flex flex-col md:grid md:grid-cols-12 overflow-y-hidden ">
-        <div className="flex  md:items-center justify-center  py-8 md:py-2 md:px-10 md:col-span-4   ">
+        <div className="flex  md:items-center justify-center  py-8 md:py-2 md:px-10 md: md:col-span-4   ">
           <RegistrationForm onAddStudent={addStudentHandler} studentList={studentList} />
 
         </div>
