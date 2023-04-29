@@ -121,7 +121,15 @@ const RegistrationForm = ({ onAddStudent }) => {
         onAddStudent(studentData.name, studentData.email, studentData.teamName, studentData.gender, studentData.mobile, studentData.branch, studentData.year);
         console.log(studentData);
         setMemberCount(memberCount + 1);
-
+        setStudentData({
+            name: "",
+            email: "",
+            teamName: "",
+            gender: "",
+            mobile: 0,
+            branch: "",
+            year: "",
+        });
     }
 
     const handleClearFields = () => {
