@@ -44,7 +44,7 @@ const Footer = () => {
             </div>
             </span>
         </div>
-        <div className='md:h-[2vh] h-[20px] text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+        <div className='text-center px-3'>
         &copy; {new Date().getFullYear()} Copyright:{' '}
         <a className='text-dark'>
           SC_CSBS
