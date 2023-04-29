@@ -4,7 +4,7 @@ import { FaLinkedinIn , FaGithub, FaInstagram, FaFacebook, FaTwitter} from "reac
 const Footer = () => {
     return (
       <>
-      <footer className="flex md:flex-row flex-column flex-wrap items-center justify-between py-0 md:px-6  bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-500 fixed bottom-0  w-full">
+      <footer className="flex md:flex-row flex-column flex-wrap items-center justify-between py-0 md:px-6  bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-500 fixed bottom-0  w-full z-10">
         <div classname='footer-socials' >
         <span style={{"gap": "1rem", "cursor": "pointer", "display": "flex"}}> 
             <div>
