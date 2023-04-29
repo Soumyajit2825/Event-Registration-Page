@@ -302,7 +302,7 @@ const RegistrationForm = ({ onAddStudent, studentList }) => {
                 <h1 className='block mb-2 font-bold text-gray-100 text-2xl text-center'>Pay the way you want</h1>
 
                 <h3 className='font-bold text-xl text-gray-100'>GPAY</h3>
-                <img src={"https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"} alt="QR Code" />
+                <img className="p-5 bg-green-200 w-230 h-230 rounded-lg border-8 border-purple-300" src={"https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"} alt="QR Code" />
 
                 <h3 className='font-bold text-xl text-gray-100'>Or Cash</h3>
             </div>
