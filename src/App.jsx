@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "./components/Header";
 import RegistrationForm from "./components/RegistrationForm";
 import StudentCard from "./components/StudentCard";
-
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -71,6 +71,7 @@ function App() {
 
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
