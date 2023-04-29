@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const RegistrationForm = ({ onAddStudent }) => {
+const RegistrationForm = ({ onAddStudent, studentList }) => {
 
     const [memberCount, setMemberCount] = useState(0);
     const [pay, setPay] = useState(0);
@@ -158,7 +158,7 @@ const RegistrationForm = ({ onAddStudent }) => {
 
     const handleSubmit = () => {
         console.log("Payment");
-        
+        // Send studentList to Raja
         setPay(1);
     }
 
