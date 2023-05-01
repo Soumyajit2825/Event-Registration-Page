@@ -124,9 +124,7 @@ const RegistrationForm = ({ onAddStudent, studentList }) => {
         setStudentData({
             name: "",
             email: "",
-            teamName: "",
             gender: "",
-            mobile: 0,
             branch: "",
             year: "",
         });
@@ -162,6 +160,15 @@ const RegistrationForm = ({ onAddStudent, studentList }) => {
         setPay(1);
     }
 
+    const handlePayClickQ = () => {
+        console.log("QR");
+
+    }
+
+    const handlePayClickC = () => {
+        console.log("Cash");
+
+    }
 
 
 
@@ -298,13 +305,13 @@ const RegistrationForm = ({ onAddStudent, studentList }) => {
     } else {
         return (<>
             <div className="flex accent-blue-600 flex-col w-[335px] px-4 py-4 sm:w-[380px] sm:px-6 sm:py-6 md:w-full md:px-8 md:py-10 rounded-xl shadow-2xl bg-gradient-to-r from-violet-500 to-indigo-500">
-                <h1 className='block mb-2 font-bold text-red-500 text-2xl text-center'>Team - {studentData.teamName}</h1>
+                <h1 className='block mb-2 font-bold text-yellow-400 text-2xl text-center'>Team -{studentData.teamName}</h1>
                 <h1 className='block mb-2 font-bold text-gray-100 text-2xl text-center'>Pay the way you want</h1>
 
-                <h3 className='font-bold text-xl text-gray-100'>GPAY</h3>
-                <img className="p-5 bg-green-200 w-230 h-230 rounded-lg border-8 border-purple-300" src={"https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"} alt="QR Code" />
-
-                <h3 className='font-bold text-xl text-gray-100'>Or Cash</h3>
+                <img src={"https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"} alt="QR Code" />
+                <button onClick={handlePayClickQ} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Scan the QR</button>
+                <br></br>
+                <button onClick={handlePayClickC} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Cash</button>
             </div>
         </>);
     }
