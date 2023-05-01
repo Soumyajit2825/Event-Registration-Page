@@ -153,6 +153,7 @@ const RegistrationForm = ({ onAddStudent, studentList }) => {
              
         }
     }
+    //--------------------------------------------------------------------------------
 
     const handleSubmit = () => {
         console.log("Payment");
@@ -160,16 +161,19 @@ const RegistrationForm = ({ onAddStudent, studentList }) => {
         setPay(1);
     }
 
-    const handlePayClickQ = () => {
-        console.log("QR");
+    const handlePayClick = (method) => {
+        if (method === "Q"){
+            //handleSubmit()
+            console.log("QR");
+        }
+        else if (method === "C"){
+            //handleSubmit()
+            console.log("Cash");
+        }
 
     }
 
-    const handlePayClickC = () => {
-        console.log("Cash");
-
-    }
-
+    //--------------------------------------------------------------------------------
 
 
     var name, team, submit;
@@ -305,13 +309,16 @@ const RegistrationForm = ({ onAddStudent, studentList }) => {
     } else {
         return (<>
             <div className="flex accent-blue-600 flex-col w-[335px] px-4 py-4 sm:w-[380px] sm:px-6 sm:py-6 md:w-full md:px-8 md:py-10 rounded-xl shadow-2xl bg-gradient-to-r from-violet-500 to-indigo-500">
-                <h1 className='block mb-2 font-bold text-yellow-400 text-2xl text-center'>Team -{studentData.teamName}</h1>
+                <h1 className='block mb-2 font-bold text-yellow-400 text-2xl text-center'>Team - {studentList[0].teamName}</h1>
                 <h1 className='block mb-2 font-bold text-gray-100 text-2xl text-center'>Pay the way you want</h1>
 
-                <img src={"https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"} alt="QR Code" />
-                <button onClick={handlePayClickQ} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Scan the QR</button>
+                <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
+                    <img className=" bg-white w-full h-full rounded-xl " src={"https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"} alt="QR Code" />
+                </div>
                 <br></br>
-                <button onClick={handlePayClickC} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Cash</button>
+                <button onClick={handlePayClick("Q")} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Scan the QR</button>
+                <br></br>
+                <button onClick={handlePayClick("C")} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Cash</button>
             </div>
         </>);
     }
