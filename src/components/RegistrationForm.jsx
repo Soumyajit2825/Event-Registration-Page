@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
-const RegistrationForm = ({ onAddStudent, studentList }) => {
+const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemberCount }) => {
 
-    const [memberCount, setMemberCount] = useState(0);
+    
     const [pay, setPay] = useState(0);
     const [studentData, setStudentData] = useState({
         name: "",
@@ -118,8 +118,8 @@ const RegistrationForm = ({ onAddStudent, studentList }) => {
 
     const handleOnClick = () => {
 
-        onAddStudent(studentData.name, studentData.email, studentData.teamName, studentData.gender, studentData.mobile, studentData.branch, studentData.year);
-        console.log(studentData);
+        addStudentHandler(memberCount, studentData.name, studentData.email, studentData.teamName, studentData.gender, studentData.mobile, studentData.branch, studentData.year);
+        console.log(memberCount, studentData);
         setMemberCount(memberCount + 1);
         setStudentData({
             name: "",

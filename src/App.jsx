@@ -8,22 +8,37 @@ import Footer from "./components/Footer";
 function App() {
 
   const [studentList, setStudentList] = useState([]);
+  const [memberCount, setMemberCount] = useState(0);
 
 
-  const addStudentHandler = (name, email, teamName, gender, mobile, branch, year) => {
+  const addStudentHandler = (memberCount, name, email, teamName, gender, mobile, branch, year) => {
 
     setStudentList((prevUser) => {
 
-      return [...prevUser, {
-        id: Math.random().toString(),
-        name: name,
-        email: email,
-        teamName: teamName,
-        gender: gender,
-        mobile: mobile,
-        branch: branch,
-        year: year,
-      }];
+      if ((memberCount+1) > prevUser.length) {
+        return [...prevUser, {
+          id: Math.random().toString(),
+          name: name,
+          email: email,
+          teamName: teamName,
+          gender: gender,
+          mobile: mobile,
+          branch: branch,
+          year: year,
+        }];
+      }else{
+        prevUser[memberCount] = {
+          id: Math.random().toString(),
+          name: name,
+          email: email,
+          teamName: teamName,
+          gender: gender,
+          mobile: mobile,
+          branch: branch,
+          year: year,
+        }
+        return prevUser;
+      }
 
     })
 
@@ -36,7 +51,8 @@ function App() {
       <Header />
       <div className=" md:h-[100vh]  flex flex-col md:grid md:grid-cols-12 overflow-y-hidden ">
         <div className="flex  md:items-center justify-center  py-8 md:py-2 md:px-10 md: md:col-span-4   ">
-          <RegistrationForm onAddStudent={addStudentHandler} studentList={studentList} />
+          <RegistrationForm addStudentHandler={addStudentHandler} studentList={studentList} 
+                            memberCount={memberCount} setMemberCount={setMemberCount} />
 
         </div>
         <div className=" flex flex-col items-center justify-center  gap-y-6 px-4 pt-10 pb-6 md:col-span-8 md:px-6 md:pt-10 md:pb-10 md:items-start md:justify-items-center custom-scroll md:gap-6 md:border-l-[6px] md:border-indigo-500  md:overflow-y-scroll md:grid md:grid-cols-2  ">
@@ -44,7 +60,7 @@ function App() {
 
           {studentList.length !== 0 ? (
             <>
-              {studentList.map((student) => (
+              {studentList.map((student, idx) => (
 
 
                 <StudentCard
@@ -53,7 +69,9 @@ function App() {
                   email={student.email}
                   gender={student.gender}
                   branch={student.branch}
-                  year={student.year} />
+                  year={student.year}
+                  idx={idx}
+                  setMemberCount={setMemberCount} />
 
               ))}
             </>
