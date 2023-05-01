@@ -17,22 +17,11 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
         name: "",
         email: "",
         teamName: "",
-        gender: "",
+        gender: "Female",
         mobile: "",
         branch: "",
-        year: "",
+        year: "1st Year",
     });
-
-   
-    //     if (email.trim() === '') {
-    //       setEmailError('Email is required');
-    //       isValid = false;
-    //     } else if (!/\S+@\S+\.\S+/.test(email)) {
-    //       setEmailError('Email is invalid');
-    //       isValid = false;
-    //     } else {
-    //       setEmailError('');
-    //     }
 
 
     const handleStudentChange = (e) => {
@@ -50,7 +39,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                     return { ...prevValue, name: newValue };
                 }
             } else if (inputName === "Email") {
-                if (newValue && (/^[a-zA-Z0-9]+@aot\.in$/.test(newValue))) {
+                if (newValue && (/^[a-zA-Z\.0-9]+@aot\.edu\.in$/.test(newValue))) {
                     setErrors({ ...errors, email: "" });
                     return { ...prevValue, email: newValue };
                 }else {
@@ -58,7 +47,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                     return { ...prevValue, email: newValue };
                 }
             } else if (inputName === "teamName") {
-                if (newValue) {
+                if (newValue && (/^[A-za-z0-9_]{3,}$/.test(newValue))) {
                     setErrors({ ...errors, teamName: "" });
                     return { ...prevValue, teamName: newValue };
                 }else {
@@ -68,7 +57,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
             } else if (inputName === "mobile") {
                 if (newValue && (/^[0-9]{10}$/.test(newValue))) {
                     setErrors({ ...errors, mobile: "" });
-                    return { ...prevValue, mobile: "+91-" + newValue };
+                    return { ...prevValue, mobile: newValue };
                 }else {
                     setErrors({ ...errors, mobile: "border-red-400 focus:border-red-500" });
                     return { ...prevValue, mobile: newValue };
@@ -83,15 +72,8 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                     studentGender = value;
                 }
 
-                return {
-                    name: prevValue.name,
-                    email: prevValue.email,
-                    teamName: prevValue.teamName,
-                    gender: studentGender,
-                    mobile: prevValue.mobile,
-                    branch: prevValue.branch,
-                    year: prevValue.year,
-                }
+                return {...prevValue, gender: studentGender}
+
             } else if (inputName === "year") {
                 const { value, checked } = e.target;
 
@@ -100,15 +82,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                 if (checked) {
                     yearSeleted = value;
                 }
-                return {
-                    name: prevValue.name,
-                    email: prevValue.email,
-                    teamName: prevValue.teamName,
-                    gender: prevValue.gender,
-                    mobile: prevValue.mobile,
-                    branch: prevValue.branch,
-                    year: yearSeleted,
-                }
+                return {...prevValue, year: yearSeleted}
 
             } else if (inputName === "branch") {
                 if (newValue) {
@@ -125,18 +99,32 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
 
 
     const handleOnClick = () => {
-        // if (validate()){
+        let f=1;
+        for (const key in studentData) {
+            if (studentData[key] === "" && memberCount === 0) {
+                f=0;
+                setErrors((prevValue) => {return { ...prevValue, [key]: "border-red-400 focus:border-red-500" }} );
+            }
+            else if (studentData[key] === "" && key !== "mobile" && key !== "teamName") {
+                f=0;
+                setErrors((prevValue) => {return { ...prevValue, [key]: "border-red-400 focus:border-red-500" }} );
+            }
+        }
+
+        if (f){
             addStudentHandler(memberCount, studentData.name, studentData.email, studentData.teamName, studentData.gender, studentData.mobile, studentData.branch, studentData.year);
             // console.log(memberCount, studentData);
             setMemberCount(memberCount + 1);
             setStudentData({
                 name: "",
                 email: "",
+                teamName: "",
                 gender: "",
+                mobile: "",
                 branch: "",
                 year: "",
             });
-        // }
+        }
     }
 
     const handleClearFields = () => {
@@ -145,7 +133,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
             email: "",
             teamName: "",
             gender: "",
-            mobile: 0,
+            mobile: "",
             branch: "",
             year: "",
         });
@@ -161,6 +149,9 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
            radiosg[i].checked = false;
              
         }
+        let select = document.getElementsByName('default');
+        console.log(select[0]);
+        select[0].selected = true;
     }
     //--------------------------------------------------------------------------------
 
@@ -237,7 +228,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                 <div className="mb-2">
                     <label htmlFor="branch" className="block mb-2 text-s font-bold text-gray-100 ">Branch<span className='text-red-600'>*</span></label>
                     <select onChange={handleStudentChange} placeholder='CSBS' name='branch'  className={`shadow-sm bg-gray-50 border-[4px] box-border text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium ${errors.branch ? errors.branch : "border-sky-400 focus:border-blue-500"} `} required >
-                        <option value="" selected>Select branch</option>
+                        <option value="" selected name="default">Select branch</option>
                         <option value="CSE">CSE</option>
                         <option value="CSBS">CSBS</option>
                         <option value="ECE">ECE</option>
