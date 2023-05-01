@@ -13,7 +13,7 @@ const StudentCard = ({ name, email, branch, gender, year }) => {
   }
 
   return (
-    <div className="relative flex w-[350px] h-[220px] md:w-[400px] md:h-[230px] ring-[6px] ring-purple-600 bg-purple-50  cursor-pointer rounded-xl overflow-hidden hover:scale-[1.05] shadow-2xl shadow-violet-700 hover:shadow-violet-300 transition duration-300 ease-in">
+    <div className="relative flex w-[335px] h-[200px] md:w-[380px] md:h-[200px] ring-[6px] ring-purple-600 bg-purple-50  cursor-pointer rounded-xl overflow-hidden hover:scale-[1.05] shadow-2xl shadow-violet-700 hover:shadow-violet-300 transition duration-300 ease-in">
       <div className="absolute -right-[94px] -top-[86px] md:-right-[104px] md:-top-[104px] ">
         <BGPattern />
       </div>
