@@ -13,55 +13,65 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
         branch: "",
         year: "",
     });
+    const [errors, setErrors] = useState({
+        name: "",
+        email: "",
+        teamName: "",
+        gender: "",
+        mobile: "",
+        branch: "",
+        year: "",
+    });
+
+   
+    //     if (email.trim() === '') {
+    //       setEmailError('Email is required');
+    //       isValid = false;
+    //     } else if (!/\S+@\S+\.\S+/.test(email)) {
+    //       setEmailError('Email is invalid');
+    //       isValid = false;
+    //     } else {
+    //       setEmailError('');
+    //     }
 
 
     const handleStudentChange = (e) => {
-
-
 
         const newValue = e.target.value;
         const inputName = e.target.name;
 
         setStudentData((prevValue) => {
             if (inputName === "fName") {
-                return {
-                    name: newValue,
-                    email: prevValue.email,
-                    teamName: prevValue.teamName,
-                    gender: prevValue.gender,
-                    mobile: prevValue.mobile,
-                    branch: prevValue.branch,
-                    year: prevValue.year,
-                };
+                if (newValue) {
+                    setErrors({ ...errors, name: "" });
+                    return { ...prevValue, name: newValue };
+                }else {
+                    setErrors({ ...errors, name: "border-red-400 focus:border-red-500" });
+                    return { ...prevValue, name: newValue };
+                }
             } else if (inputName === "Email") {
-                return {
-                    name: prevValue.name,
-                    email: newValue,
-                    teamName: prevValue.teamName,
-                    gender: prevValue.gender,
-                    mobile: prevValue.mobile,
-                    branch: prevValue.branch,
-                    year: prevValue.year,
-                };
+                if (newValue && (/^[a-zA-Z0-9]+@aot\.in$/.test(newValue))) {
+                    setErrors({ ...errors, email: "" });
+                    return { ...prevValue, email: newValue };
+                }else {
+                    setErrors({ ...errors, email: "border-red-400 focus:border-red-500" });
+                    return { ...prevValue, email: newValue };
+                }
             } else if (inputName === "teamName") {
-                return {
-                    name: prevValue.name,
-                    email: prevValue.email,
-                    teamName: newValue,
-                    gender: prevValue.gender,
-                    mobile: prevValue.mobile,
-                    branch: prevValue.branch,
-                    year: prevValue.year,
-                };
+                if (newValue) {
+                    setErrors({ ...errors, teamName: "" });
+                    return { ...prevValue, teamName: newValue };
+                }else {
+                    setErrors({ ...errors, teamName: "border-red-400 focus:border-red-500" });
+                    return { ...prevValue, teamName: newValue };
+                }
             } else if (inputName === "mobile") {
-                return {
-                    name: prevValue.name,
-                    email: prevValue.email,
-                    teamName: prevValue.teamName,
-                    gender: prevValue.gender,
-                    mobile: newValue,
-                    branch: prevValue.branch,
-                    year: prevValue.year,
+                if (newValue && (/^[0-9]{10}$/.test(newValue))) {
+                    setErrors({ ...errors, mobile: "" });
+                    return { ...prevValue, mobile: "+91-" + newValue };
+                }else {
+                    setErrors({ ...errors, mobile: "border-red-400 focus:border-red-500" });
+                    return { ...prevValue, mobile: newValue };
                 }
             } else if (inputName === "gender") {
 
@@ -101,14 +111,12 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                 }
 
             } else if (inputName === "branch") {
-                return {
-                    name: prevValue.name,
-                    email: prevValue.email,
-                    teamName: prevValue.teamName,
-                    gender: prevValue.gender,
-                    mobile: prevValue.mobile,
-                    branch: newValue,
-                    year: prevValue.year,
+                if (newValue) {
+                    setErrors({ ...errors, branch: "" });
+                    return { ...prevValue, branch: newValue };
+                }else {
+                    setErrors({ ...errors, branch: "border-red-400 focus:border-red-500" });
+                    return { ...prevValue, branch: newValue };
                 }
             }
         });
@@ -117,17 +125,18 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
 
 
     const handleOnClick = () => {
-
-        addStudentHandler(memberCount, studentData.name, studentData.email, studentData.teamName, studentData.gender, studentData.mobile, studentData.branch, studentData.year);
-        console.log(memberCount, studentData);
-        setMemberCount(memberCount + 1);
-        setStudentData({
-            name: "",
-            email: "",
-            gender: "",
-            branch: "",
-            year: "",
-        });
+        // if (validate()){
+            addStudentHandler(memberCount, studentData.name, studentData.email, studentData.teamName, studentData.gender, studentData.mobile, studentData.branch, studentData.year);
+            // console.log(memberCount, studentData);
+            setMemberCount(memberCount + 1);
+            setStudentData({
+                name: "",
+                email: "",
+                gender: "",
+                branch: "",
+                year: "",
+            });
+        // }
     }
 
     const handleClearFields = () => {
@@ -182,23 +191,23 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
     name = <div className="mb-2">
     
         <label htmlFor="fName" className="block mb-1 text-s font-bold text-gray-100 ">Team Lead Name<span className='text-red-600'>*</span></label>
-        <input type="text" name="fName" value={studentData.name} onChange={handleStudentChange} className="shadow-sm bg-gray-50 border-[4px] box-border  border-sky-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium" placeholder="Enter your Team-Lead name"  required />
+        <input type="text" name="fName" value={studentData.name} onChange={handleStudentChange} className={`shadow-sm bg-gray-50 border-[4px] box-border text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium ${errors.name ? errors.name : "border-sky-400 focus:border-blue-500"} `} placeholder="Enter your Team-Lead name"  required />
     </div>
 
     team = (<>
     <div className="mb-2">
         <label htmlFor="teamName" className="block mb-2 text-s font-bold text-gray-100 ">Team Name<span className='text-red-600'>*</span></label>
-        <input type="url" name="teamName" value={studentData.teamName} onChange={handleStudentChange} className="shadow-sm bg-gray-50 border-[4px] box-border  border-sky-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium" placeholder="Some Thing Cool" required />
+        <input type="url" name="teamName" value={studentData.teamName} onChange={handleStudentChange} className={`shadow-sm bg-gray-50 border-[4px] box-border text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium ${errors.teamName ? errors.teamName : "border-sky-400 focus:border-blue-500"} `} placeholder="Some Thing Cool" required />
     </div>
     <div className="mb-2">
         <label htmlFor="mobile" className="block mb-2 text-s font-bold text-gray-100 ">Mobile Number of Team Leader<span className='text-red-600'>*</span></label>
-        <input type="tel" maxLength="10" minLength="10" name="mobile" value={studentData.mobile} onChange={handleStudentChange} className="shadow-sm bg-gray-50 border-[4px] box-border  border-sky-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium" placeholder="+91-XXXXXXXXXX" required />
+        <input type="tel" maxLength="10" minLength="10" name="mobile" value={studentData.mobile} onChange={handleStudentChange} className={`shadow-sm bg-gray-50 border-[4px] box-border text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium ${errors.mobile ? errors.mobile : "border-sky-400 focus:border-blue-500"} `} placeholder="+91-XXXXXXXXXX" required />
     </div>
     </>)
     } else {
     name = <div className="mb-2">
         <label htmlFor="fName" className="block mb-1 text-s font-bold text-gray-100 ">Member {memberCount} Name<span className='text-red-600'>*</span></label>
-        <input type="text" name="fName" value={studentData.name} onChange={handleStudentChange} className="shadow-sm bg-gray-50 border-[4px] box-border  border-sky-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium" placeholder={`Enter your Member ${memberCount} name`} required />
+        <input type="text" name="fName" value={studentData.name} onChange={handleStudentChange} className={`shadow-sm bg-gray-50 border-[4px] box-border text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium ${errors.name ? errors.name : "border-sky-400 focus:border-blue-500"} `} placeholder={`Enter your Member ${memberCount} name`} required />
     </div>
 
     team = null;
@@ -220,15 +229,15 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                     
                 <div className="mb-2">
                     <label htmlFor="Email" className="block mb-2 text-s font-bold text-gray-100 ">Your Email (AOT Mail)<span className='text-red-600'>*</span></label>
-                    <input type="email" name="Email" value={studentData.email} onChange={handleStudentChange} className="shadow-sm bg-gray-50 border-[4px] box-border  border-sky-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium" placeholder="name@aot.edu.in" pattern="^([a-zA-Z0-9_\-\.]+)@aot.edu.in$" required />
+                    <input type="email" name="Email" value={studentData.email} onChange={handleStudentChange} className={`shadow-sm bg-gray-50 border-[4px] box-border text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium ${errors.email ? errors.email : "border-sky-400 focus:border-blue-500"} `} placeholder="name@aot.edu.in" pattern="^([a-zA-Z0-9_\-\.]+)@aot.edu.in$" required />
                 </div>
                 
                 {team}
                 
                 <div className="mb-2">
                     <label htmlFor="branch" className="block mb-2 text-s font-bold text-gray-100 ">Branch<span className='text-red-600'>*</span></label>
-                    <select onChange={handleStudentChange} placeholder='CSBS' name='branch'  className='shadow-sm bg-gray-50 border-[4px] box-border  border-sky-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium' required >
-                        <option value=""disabled selected>Select branch</option>
+                    <select onChange={handleStudentChange} placeholder='CSBS' name='branch'  className={`shadow-sm bg-gray-50 border-[4px] box-border text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium ${errors.branch ? errors.branch : "border-sky-400 focus:border-blue-500"} `} required >
+                        <option value="" selected>Select branch</option>
                         <option value="CSE">CSE</option>
                         <option value="CSBS">CSBS</option>
                         <option value="ECE">ECE</option>
@@ -246,7 +255,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                     <label htmlFor="year" className="block mb-2 text-s font-bold text-gray-100 " required >Year<span className='text-red-600'>*</span></label>
                     <div className="flex flex-row items-center justify-around gap-2">
                         <div className="flex items-center mb-2">
-                            <input id="year-1" type="radio" name="year" value="1st Year" onChange={handleStudentChange} defaultChecked={false} className="w-4 h-4   " />
+                            <input id="year-1" type="radio" name="year" value="1st Year" onChange={handleStudentChange} defaultChecked={true} className="w-4 h-4   " />
                             <label htmlFor="year-1" className="block ml-2 text-sm font-medium text-gray-300">
                                 1st
                             </label>
@@ -287,7 +296,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                     </div>
 
                     <div className="flex items-center mb-2">
-                        <input id="gender-female" type="radio" name="gender" value="Female" onChange={handleStudentChange} defaultChecked={false} className="w-4 h-4  " />
+                        <input id="gender-female" type="radio" name="gender" value="Female" onChange={handleStudentChange} defaultChecked={true} className="w-4 h-4  " />
                         <label htmlFor="gender-female" className="block ml-2 text-sm font-medium text-gray-300">
                             Female
                         </label>
