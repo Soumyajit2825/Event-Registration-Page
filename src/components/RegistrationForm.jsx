@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
-import QR from "../assets/Treasurer.jpeg";
+// import QR from "../assets/Treasurer.jpeg";
+import QR60 from "../assets/Treasurer60.jpg";
+import QR80 from "../assets/Treasurer80.jpg";
+import QR100 from "../assets/Treasurer100.jpg";
+import mogojastro from "../assets/mogojastro.png";
+
+
 const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemberCount }) => {
 
     
+    const [qr, setQr] = useState(<img className=" bg-white w-full h-full rounded-xl " src={mogojastro} alt="Mogojastro poster" />);
     const [pay, setPay] = useState(0);
     const [studentData, setStudentData] = useState({
         name: "",
@@ -22,6 +29,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
         branch: "",
         year: "1st Year",
     });
+
 
 
     const handleStudentChange = (e) => {
@@ -115,18 +123,10 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
             addStudentHandler(memberCount, studentData.name, studentData.email, studentData.teamName, studentData.gender, studentData.mobile, studentData.branch, studentData.year);
             // console.log(memberCount, studentData);
             setMemberCount(memberCount + 1);
-            // setStudentData({
-            //     name: "",
-            //     email: "",
-            //     teamName: "",
-            //     gender: "",
-            //     mobile: "",
-            //     branch: "",
-            //     year: "",
-            // });
             handleClearFields();
         }
     }
+
 
     const handleClearFields = () => {
         setStudentData({
@@ -154,6 +154,9 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
         console.log(select[0]);
         select[0].selected = true;
     }
+
+
+
     //--------------------------------------------------------------------------------
 
     const handleSubmit = () => {
@@ -162,22 +165,46 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
         setPay(1);
     }
 
-    const handlePayClick = (method) => {
-        if (method === "Q"){
+
+    const handlePayClickQR = () => {
             //handleSubmit()
-            console.log("QR");
-        }
-        else if (method === "C"){
-            //handleSubmit()
-            console.log("Cash");
+        console.log("QR");
+
+        if(memberCount === 3){
+            
+            setQr((prevValue) => {return <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
+                        <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
+                            <img className=" bg-white w-full h-full " src={QR60} alt="QR Code of member 3" />
+                        </div>
+                    </div>})
+            console.log("3");
+        } else if(memberCount === 4){
+            setQr((prevValue) => {return <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
+                        <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
+                            <img className=" bg-white w-full h-full " src={QR80} alt="QR Code of member 4" />
+                        </div>
+                    </div>})
+        } else if(memberCount === 5){
+            setQr((prevValue) => {return <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
+                        <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
+                            <img className=" bg-white w-full h-full " src={QR100} alt="QR Code of member 5" />
+                        </div>
+                    </div>})
         }
 
+    }
+
+    const handlePayClickCash = () => {
+        //handleSubmit()
+        console.log("Cash");
+        setQr((prevValue) => {return <img className=" bg-white w-full h-full rounded-xl " src={mogojastro} alt="Mogojastro poster" />})
     }
 
     //--------------------------------------------------------------------------------
 
 
     var name, team, submit;
+
 
     if (memberCount === 0){
     name = <div className="mb-2">
@@ -204,7 +231,6 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
 
     team = null;
     }
-
 
 
     if (memberCount >= 3){
@@ -312,14 +338,11 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
             <div className="flex accent-blue-600 flex-col w-[335px] px-4 py-4 sm:w-[380px] sm:px-6 sm:py-6 md:w-full md:px-8 md:py-10 rounded-xl shadow-2xl bg-gradient-to-r from-violet-500 to-indigo-500">
                 <h1 className='block mb-2 font-bold text-yellow-400 text-2xl text-center'>Team - {studentList[0].teamName}</h1>
                 <h1 className='block mb-2 font-bold text-gray-100 text-2xl text-center'>Pay the way you want</h1>
-
-                <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
-                    <img className=" bg-white w-full h-full rounded-xl " src={QR} alt="QR Code" />
-                </div>
+                {qr}
                 <br></br>
-                <button onClick={handlePayClick("Q")} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Scan the QR and pay Online</button>
+                <button onClick={handlePayClickQR} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Scan the QR and pay Online</button>
                 <br></br>
-                <button onClick={handlePayClick("C")} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Pay in Cash</button>
+                <button onClick={handlePayClickCash} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Pay in Cash</button>
             </div>
         </>);
     }
