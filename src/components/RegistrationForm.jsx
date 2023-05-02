@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import QR from "../assets/Treasurer.jpeg";
 const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemberCount }) => {
 
     
@@ -313,12 +313,12 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                 <h1 className='block mb-2 font-bold text-gray-100 text-2xl text-center'>Pay the way you want</h1>
 
                 <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
-                    <img className=" bg-white w-full h-full rounded-xl " src={"https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"} alt="QR Code" />
+                    <img className=" bg-white w-full h-full rounded-xl " src={QR} alt="QR Code" />
                 </div>
                 <br></br>
-                <button onClick={handlePayClick("Q")} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Scan the QR</button>
+                <button onClick={handlePayClick("Q")} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Scan the QR and pay Online</button>
                 <br></br>
-                <button onClick={handlePayClick("C")} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Cash</button>
+                <button onClick={handlePayClick("C")} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Pay in Cash</button>
             </div>
         </>);
     }
