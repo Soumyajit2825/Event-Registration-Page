@@ -115,15 +115,16 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
             addStudentHandler(memberCount, studentData.name, studentData.email, studentData.teamName, studentData.gender, studentData.mobile, studentData.branch, studentData.year);
             // console.log(memberCount, studentData);
             setMemberCount(memberCount + 1);
-            setStudentData({
-                name: "",
-                email: "",
-                teamName: "",
-                gender: "",
-                mobile: "",
-                branch: "",
-                year: "",
-            });
+            // setStudentData({
+            //     name: "",
+            //     email: "",
+            //     teamName: "",
+            //     gender: "",
+            //     mobile: "",
+            //     branch: "",
+            //     year: "",
+            // });
+            handleClearFields();
         }
     }
 
@@ -246,7 +247,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                     <label htmlFor="year" className="block mb-2 text-s font-bold text-gray-100 " required >Year<span className='text-red-600'>*</span></label>
                     <div className="flex flex-row items-center justify-around gap-2">
                         <div className="flex items-center mb-2">
-                            <input id="year-1" type="radio" name="year" value="1st Year" onChange={handleStudentChange} defaultChecked={true} className="w-4 h-4   " />
+                            <input id="year-1" type="radio" name="year" value="1st Year" onChange={handleStudentChange} defaultChecked={false} className="w-4 h-4   " />
                             <label htmlFor="year-1" className="block ml-2 text-sm font-medium text-gray-300">
                                 1st
                             </label>
@@ -287,7 +288,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                     </div>
 
                     <div className="flex items-center mb-2">
-                        <input id="gender-female" type="radio" name="gender" value="Female" onChange={handleStudentChange} defaultChecked={true} className="w-4 h-4  " />
+                        <input id="gender-female" type="radio" name="gender" value="Female" onChange={handleStudentChange} defaultChecked={false} className="w-4 h-4  " />
                         <label htmlFor="gender-female" className="block ml-2 text-sm font-medium text-gray-300">
                             Female
                         </label>
