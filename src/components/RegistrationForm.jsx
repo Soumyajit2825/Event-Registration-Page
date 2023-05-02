@@ -179,7 +179,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                             </div>
                         </div>
                         <a href="https://docs.google.com/forms/d/1P8QWlZP9D_ZUixLyURtxqbyfEzK1jvcHCdMraMgYKJM" target="_blank" rel="noreferrer" className=" text-center text-md mt-3">
-                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-1' >Click here to Submit the Payment Screenshot</button>
+                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-1 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-purple-300' >Click here to Submit the Payment Screenshot</button>
                         </a>    
                     </>
                     })
@@ -192,7 +192,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                             </div>
                         </div>
                         <a href="https://docs.google.com/forms/d/1P8QWlZP9D_ZUixLyURtxqbyfEzK1jvcHCdMraMgYKJM" target="_blank" rel="noreferrer" className=" text-center text-md mt-1">
-                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-1' >Click here to Submit the Payment Screenshot</button>
+                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-1 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300' >Click here to Submit the Payment Screenshot</button>
                         </a>    
                     </>
                     })
@@ -204,7 +204,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                             </div>
                         </div>
                         <a href="https://docs.google.com/forms/d/1P8QWlZP9D_ZUixLyURtxqbyfEzK1jvcHCdMraMgYKJM" target="_blank" rel="noreferrer" className=" text-center text-md mt-3">
-                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-3' >Click here to Submit the Payment Screenshot</button>
+                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-3 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300' >Click here to Submit the Payment Screenshot</button>
                         </a>    
                     </>
                     })
