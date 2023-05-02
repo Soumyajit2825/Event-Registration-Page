@@ -172,24 +172,42 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
 
         if(memberCount === 3){
             
-            setQr((prevValue) => {return <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
-                        <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
-                            <img className=" bg-white w-full h-full " src={QR60} alt="QR Code of member 3" />
+            setQr((prevValue) => {return <>
+                        <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
+                            <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
+                                <img className=" bg-white w-full h-full " src={QR60} alt="QR Code of member 3" />
+                            </div>
                         </div>
-                    </div>})
+                        <a href="https://docs.google.com/forms/d/1P8QWlZP9D_ZUixLyURtxqbyfEzK1jvcHCdMraMgYKJM" target="_blank" rel="noreferrer" className=" text-center text-md mt-3">
+                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-1' >Click here to Submit the Payment Screenshot</button>
+                        </a>    
+                    </>
+                    })
             console.log("3");
         } else if(memberCount === 4){
-            setQr((prevValue) => {return <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
-                        <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
-                            <img className=" bg-white w-full h-full " src={QR80} alt="QR Code of member 4" />
+                    setQr((prevValue) => {return <>
+                        <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
+                            <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
+                                <img className=" bg-white w-full h-full " src={QR80} alt="QR Code of member 3" />
+                            </div>
                         </div>
-                    </div>})
+                        <a href="https://docs.google.com/forms/d/1P8QWlZP9D_ZUixLyURtxqbyfEzK1jvcHCdMraMgYKJM" target="_blank" rel="noreferrer" className=" text-center text-md mt-1">
+                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-1' >Click here to Submit the Payment Screenshot</button>
+                        </a>    
+                    </>
+                    })
         } else if(memberCount === 5){
-            setQr((prevValue) => {return <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
-                        <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
-                            <img className=" bg-white w-full h-full " src={QR100} alt="QR Code of member 5" />
+            setQr((prevValue) => {return <>
+                        <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
+                            <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
+                                <img className=" bg-white w-full h-full " src={QR100} alt="QR Code of member 3" />
+                            </div>
                         </div>
-                    </div>})
+                        <a href="https://docs.google.com/forms/d/1P8QWlZP9D_ZUixLyURtxqbyfEzK1jvcHCdMraMgYKJM" target="_blank" rel="noreferrer" className=" text-center text-md mt-3">
+                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-3' >Click here to Submit the Payment Screenshot</button>
+                        </a>    
+                    </>
+                    })
         }
 
     }
