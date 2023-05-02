@@ -206,7 +206,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
 
 
 
-    if (memberCount >= 2){
+    if (memberCount >= 3){
         submit =  <button onClick={handleSubmit} type="button" className="text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2 text-center ">Submit</button>
     }
 
@@ -220,7 +220,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                     
                 <div className="mb-2">
                     <label htmlFor="Email" className="block mb-2 text-s font-bold text-gray-100 ">Your Email (AOT Mail)<span className='text-red-600'>*</span></label>
-                    <input type="email" name="Email" value={studentData.email} onChange={handleStudentChange} className={`shadow-sm bg-gray-50 border-[4px] box-border text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium ${errors.email ? errors.email : "border-sky-400 focus:border-blue-500"} `} placeholder="name.title@aot.edu.in" pattern="^([a-zA-Z\.]+)@aot.edu.in$" required />
+                    <input type="email" name="Email" value={studentData.email} onChange={handleStudentChange} className={`shadow-sm bg-gray-50 border-[4px] box-border text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium ${errors.email ? errors.email : "border-sky-400 focus:border-blue-500"} `} placeholder="name.title@aot.edu.in" pattern="^([a-zA-Z\.\0-9]+)@aot.edu.in$" required />
                 </div>
                 
                 {team}
