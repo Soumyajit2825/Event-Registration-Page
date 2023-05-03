@@ -1,6 +1,9 @@
 import React from "react";
-import BGPattern from "../UI/BGPattern"
+import BGPattern from "../UI/BGPattern";
+import styled, { keyframes } from "styled-components";
+import { bounceInUp } from "react-animations";
 
+const BounceInUp = styled.div`animation: 2s ${keyframes`${bounceInUp}`}`;
 
 const StudentCard = ({ name, email, branch, gender, year, idx, setMemberCount }) => {
 
@@ -10,6 +13,7 @@ const StudentCard = ({ name, email, branch, gender, year, idx, setMemberCount })
   }
 
   return (
+    <BounceInUp>
     <div className="flex flex-col items-center">
       <div className="relative flex w-[335px] h-[200px] md:w-[380px] md:h-[200px] ring-[6px] ring-purple-600 bg-purple-50  cursor-pointer rounded-xl overflow-hidden hover:scale-[1.05] shadow-2xl shadow-violet-700 hover:shadow-violet-300 transition duration-300 ease-in">
         <div className="absolute -right-[94px] -top-[86px] md:-right-[104px] md:-top-[104px] ">
@@ -28,6 +32,7 @@ const StudentCard = ({ name, email, branch, gender, year, idx, setMemberCount })
       <button className="cursor-pointer rounded-xl w-[90%] hover:scale-[1.05] bg-purple-500 transition duration-300 ease-in" onClick={handleEdit}>Edit</button>
 
     </div>
+    </BounceInUp>
   );
 };
 

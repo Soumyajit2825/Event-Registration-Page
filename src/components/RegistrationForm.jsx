@@ -6,10 +6,16 @@ import QR100 from "../assets/Treasurer100.jpg";
 import mogojastro from "../assets/mogojastro.png";
 
 
+import styled, { keyframes } from "styled-components";
+import { fadeInUp } from "react-animations";
+
+const FadeInUp = styled.div`animation: 1s ${keyframes`${fadeInUp}`}`;
+
+
 const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemberCount, pay, setPay }) => {
 
     
-    const [qr, setQr] = useState(<img className=" bg-white w-full h-full md:h-[400px] rounded-xl " src={mogojastro} alt="Mogojastro poster" />);
+    const [qr, setQr] = useState((<FadeInUp><img className=" bg-white w-full h-full md:h-[400px] rounded-xl " src={mogojastro} alt="Mogojastro poster" /></FadeInUp>));
     
     const [studentData, setStudentData] = useState({
         name: "",
@@ -172,7 +178,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
 
         if(memberCount === 3){
             
-            setQr((prevValue) => {return <>
+            setQr((prevValue) => {return <FadeInUp>
                         <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
                             <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
                                 <img className=" bg-white w-full h-full " src={QR60} alt="QR Code of member 3" />
@@ -181,11 +187,11 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                         <a href="https://docs.google.com/forms/d/1P8QWlZP9D_ZUixLyURtxqbyfEzK1jvcHCdMraMgYKJM" target="_blank" rel="noreferrer" className=" text-center text-md mt-3">
                             <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-1' >Click here to Submit the Payment Screenshot</button>
                         </a>    
-                    </>
+                    </FadeInUp>
                     })
             console.log("3");
         } else if(memberCount === 4){
-                    setQr((prevValue) => {return <>
+                    setQr((prevValue) => {return <FadeInUp>
                         <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
                             <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
                                 <img className=" bg-white w-full h-full " src={QR80} alt="QR Code of member 3" />
@@ -194,10 +200,10 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                         <a href="https://docs.google.com/forms/d/1P8QWlZP9D_ZUixLyURtxqbyfEzK1jvcHCdMraMgYKJM" target="_blank" rel="noreferrer" className=" text-center text-md mt-1">
                             <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-1' >Click here to Submit the Payment Screenshot</button>
                         </a>    
-                    </>
+                    </FadeInUp>
                     })
         } else if(memberCount === 5){
-            setQr((prevValue) => {return <>
+            setQr((prevValue) => {return <FadeInUp>
                         <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
                             <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
                                 <img className=" bg-white w-full h-full " src={QR100} alt="QR Code of member 3" />
@@ -206,7 +212,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
                         <a href="https://docs.google.com/forms/d/1P8QWlZP9D_ZUixLyURtxqbyfEzK1jvcHCdMraMgYKJM" target="_blank" rel="noreferrer" className=" text-center text-md mt-3">
                             <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-3' >Click here to Submit the Payment Screenshot</button>
                         </a>    
-                    </>
+                    </FadeInUp>
                     })
         }
 
@@ -216,7 +222,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
         //handleSubmit()
         console.log("Cash");
         setPay(2);
-        setQr((prevValue) => {return <img className=" bg-white w-full h-full md:h-[400px]  rounded-xl " src={mogojastro} alt="Mogojastro poster" />})
+        setQr((prevValue) => {return (<FadeInUp><img className=" bg-white w-full h-full md:h-[400px]  rounded-xl " src={mogojastro} alt="Mogojastro poster" /></FadeInUp>)})
     }
 
     //--------------------------------------------------------------------------------
@@ -242,7 +248,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
         <input type="tel" maxLength="10" minLength="10" name="mobile" value={studentData.mobile} onChange={handleStudentChange} className={`shadow-sm bg-gray-50 border-[4px] box-border text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium ${errors.mobile ? errors.mobile : "border-sky-400 focus:border-blue-500"} `} placeholder="+91-XXXXXXXXXX" required />
     </div>
     </>)
-    } else if (pay === 1) {
+    } else {
     name = <div className="mb-2">
         <label htmlFor="fName" className="block mb-1 text-s font-bold text-gray-100 ">Member {memberCount} Name<span className='text-red-600'>*</span></label>
         <input type="text" name="fName" value={studentData.name} onChange={handleStudentChange} className={`shadow-sm bg-gray-50 border-[4px] box-border text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium ${errors.name ? errors.name : "border-sky-400 focus:border-blue-500"} `} placeholder={`Enter your Member ${memberCount} name`} required />
