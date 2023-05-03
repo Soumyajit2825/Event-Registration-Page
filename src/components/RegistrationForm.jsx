@@ -6,11 +6,11 @@ import QR100 from "../assets/Treasurer100.jpg";
 import mogojastro from "../assets/mogojastro.png";
 
 
-const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemberCount }) => {
+const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemberCount, pay, setPay }) => {
 
     
-    const [qr, setQr] = useState(<img className=" bg-white w-full h-full rounded-xl " src={mogojastro} alt="Mogojastro poster" />);
-    const [pay, setPay] = useState(0);
+    const [qr, setQr] = useState(<img className=" bg-white w-full h-full md:h-[400px] rounded-xl " src={mogojastro} alt="Mogojastro poster" />);
+    
     const [studentData, setStudentData] = useState({
         name: "",
         email: "",
@@ -215,7 +215,8 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
     const handlePayClickCash = () => {
         //handleSubmit()
         console.log("Cash");
-        setQr((prevValue) => {return <img className=" bg-white w-full h-full rounded-xl " src={mogojastro} alt="Mogojastro poster" />})
+        setPay(2);
+        setQr((prevValue) => {return <img className=" bg-white w-full h-full md:h-[400px]  rounded-xl " src={mogojastro} alt="Mogojastro poster" />})
     }
 
     //--------------------------------------------------------------------------------
@@ -241,7 +242,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
         <input type="tel" maxLength="10" minLength="10" name="mobile" value={studentData.mobile} onChange={handleStudentChange} className={`shadow-sm bg-gray-50 border-[4px] box-border text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium ${errors.mobile ? errors.mobile : "border-sky-400 focus:border-blue-500"} `} placeholder="+91-XXXXXXXXXX" required />
     </div>
     </>)
-    } else {
+    } else if (pay === 1) {
     name = <div className="mb-2">
         <label htmlFor="fName" className="block mb-1 text-s font-bold text-gray-100 ">Member {memberCount} Name<span className='text-red-600'>*</span></label>
         <input type="text" name="fName" value={studentData.name} onChange={handleStudentChange} className={`shadow-sm bg-gray-50 border-[4px] box-border text-gray-900 text-sm rounded-lg focus:ring-blue-500  block w-full p-2.5 outline-none placeholder:text-gray-400 placeholder:font-medium ${errors.name ? errors.name : "border-sky-400 focus:border-blue-500"} `} placeholder={`Enter your Member ${memberCount} name`} required />
