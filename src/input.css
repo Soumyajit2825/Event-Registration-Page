@@ -571,6 +571,14 @@ video {
   bottom: 0px;
 }
 
+.left-2{
+  left: 0.5rem;
+}
+
+.right-2{
+  right: 0.5rem;
+}
+
 .z-10{
   z-index: 10;
 }
@@ -611,12 +619,20 @@ video {
   display: block;
 }
 
+.inline{
+  display: inline;
+}
+
 .flex{
   display: flex;
 }
 
 .h-1\/2{
   height: 50%;
+}
+
+.h-10{
+  height: 2.5rem;
 }
 
 .h-2\/5{
@@ -651,6 +667,10 @@ video {
   width: 50%;
 }
 
+.w-10{
+  width: 2.5rem;
+}
+
 .w-2\/5{
   width: 40%;
 }
@@ -677,6 +697,14 @@ video {
 
 .w-full{
   width: 100%;
+}
+
+.w-screen{
+  width: 100vw;
+}
+
+.flex-shrink-0{
+  flex-shrink: 0;
 }
 
 .cursor-pointer{
@@ -786,6 +814,11 @@ video {
 .bg-\[\#1f1f1f\]{
   --tw-bg-opacity: 1;
   background-color: rgb(31 31 31 / var(--tw-bg-opacity));
+}
+
+.bg-black{
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-blue-700{
@@ -921,9 +954,18 @@ video {
           background-clip: text;
 }
 
+.object-contain{
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .object-cover{
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.p-1{
+  padding: 0.25rem;
 }
 
 .p-2{
@@ -1147,6 +1189,10 @@ video {
   accent-color: #2563eb;
 }
 
+.opacity-75{
+  opacity: 0.75;
+}
+
 .shadow-2xl{
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
@@ -1194,6 +1240,19 @@ video {
 
 .ease-in{
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+.carousel {
+  display: inline-flex;
+  overflow-x: hidden;
+  /*  scroll snap is a great feature which will center the image on snap on touch screen devices  */
+  scroll-snap-type: x mandatory;
+  /* all below will hide the scrollbar on all browsers.    */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  /* For Firefox */
+  -ms-overflow-style: none;
+  /* For Internet Explorer and Edge */
 }
 
 body {
@@ -1403,6 +1462,10 @@ code {
 
   .md\:h-full{
     height: 100%;
+  }
+
+  .md\:w-3\/4{
+    width: 75%;
   }
 
   .md\:w-\[20vw\]{
