@@ -22,6 +22,9 @@ const RegistrationForm = ({
   pay,
   setPay,
 }) => {
+
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
   const [qr, setQr] = useState(
     <FlipInXAnimation>
       <img
@@ -236,6 +239,7 @@ const RegistrationForm = ({
           );
         });
       }
+      setButtonDisabled(true);
   }
 
   const handlePay = async (method) => {
@@ -277,11 +281,6 @@ const RegistrationForm = ({
 
   };
 
-//   const handlePayClickQR = () => {  }
-
-//   const handlePayClickCash = () => {   };
-
-  //--------------------------------------------------------------------------------
 
   var name, team, submit;
 
@@ -616,22 +615,24 @@ const RegistrationForm = ({
             Pay the way you want
           </h1>
           {qr}
+          { (!buttonDisabled) ? (<>
           <div className="py-2"></div>
-          <button
-            onClick={() => displayQR()}
-            type="button"
-            className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left "
-          >
-            Scan the QR and pay Online
-          </button>
-          <div className="py-2"></div>
-          <button
-            onClick={() => handlePay("Cash")}
-            type="button"
-            className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left "
-          >
-            Pay in Cash
-          </button>
+            <button
+                onClick={() => displayQR()}
+                type="button"
+                className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left "
+            >
+                Scan the QR and pay Online
+            </button>
+            <div className="py-2"></div>
+            <button
+                onClick={() => handlePay("Cash")}
+                type="button"
+                className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left "
+            >
+                Pay in Cash
+            </button>
+            </>):(<div className="p-3"></div>)}
         </div>
       </>
     );
