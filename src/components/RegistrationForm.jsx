@@ -367,7 +367,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
     )
     } else {
         return (<>
-            <div className="flex accent-blue-600 flex-col w-[335px] p-4 sm:w-[380px] sm:px-6 sm:py-6 md:w-full md:px-8 md:py-10 rounded-xl shadow-2xl bg-gradient-to-r from-violet-500 to-indigo-500">
+            <div className="flex accent-blue-600 flex-col w-[335px] p-4 sm:w-[380px] sm:px-6 sm:py-6 md:w-full md:px-8 md:py-3 rounded-xl shadow-2xl bg-gradient-to-r from-violet-500 to-indigo-500">
                 <h1 className='block font-bold text-transparent bg-clip-text text-3xl text-center bg-gradient-to-t from-yellow-400 to-sky-200 '>Team  {studentList[0].teamName}</h1>
                 <h1 className='block mb-2 font-bold text-gray-100 text-xl text-center'>Pay the way you want</h1>
                 {qr}
