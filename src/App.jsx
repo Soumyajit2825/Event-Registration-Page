@@ -13,6 +13,7 @@ function App() {
   const [pay, setPay] = useState(0);
 
 
+
   const addStudentHandler = (memberCount, name, email, teamName, gender, mobile, branch, year) => {
 
     setStudentList((prevUser) => {
@@ -95,7 +96,8 @@ function App() {
       <Footer/>
     </div>
   );
-          }else{
+          }
+          else{
             return (<Success />);
           }
 }
