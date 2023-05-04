@@ -4,8 +4,13 @@ import QR80 from "../assets/Treasurer80.jpg";
 import QR100 from "../assets/Treasurer100.jpg";
 import mogojastro from "../assets/mogojastro.png";
 import axios from "axios";
+// import dotenv from 'dotenv';
 
-const EVENT_API = "https://b840-2409-40e0-1010-4850-809-41b3-a956-3d5.ngrok-free.app/register" //process.env.REACTAPP_EVENT_API;
+// "https://b840-2409-40e0-1010-4850-809-41b3-a956-3d5.ngrok-free.app/register" //
+const EVENT_API = import.meta.env.VITE_EVENT_API + "/register";
+
+
+
 
 import styled, { keyframes } from "styled-components";
 import { flipInX } from "react-animations";
@@ -14,6 +19,8 @@ import { flipInX } from "react-animations";
 const FlipInXAnimation = styled.div`
   animation: 1s ${keyframes`${flipInX}`};
 `;
+
+
 
 const RegistrationForm = ({
   addStudentHandler,
@@ -206,7 +213,6 @@ const RegistrationForm = ({
       radiosg[i].checked = false;
     }
     let select = document.getElementsByName("default");
-    console.log(select[0]);
     select[0].selected = true;
   };
 
@@ -246,7 +252,7 @@ const RegistrationForm = ({
               >
                 <button
                   className="w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-1"
-                  onClick={pay2}
+                  onClick={() => handlePay("QR")}
                 >
                   {" "}
                   Click here to Submit the Payment Screenshot
@@ -278,7 +284,7 @@ const RegistrationForm = ({
               >
                 <button
                   className="w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-1"
-                  onClick={pay2}
+                  onClick={() => handlePay("QR")}
                 >
                   Click here to Submit the Payment Screenshot
                 </button>
@@ -309,7 +315,7 @@ const RegistrationForm = ({
               >
                 <button
                   className="w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-3"
-                  onClick={pay2}
+                  onClick={() => handlePay("QR")}
                 >
                   Click here to Submit the Payment Screenshot
                 </button>
@@ -347,6 +353,10 @@ const RegistrationForm = ({
       };
   
       let res = await axios.post(EVENT_API, schema);
+      if(res.status !== 200){
+        alert("Something went wrong, Please try again");
+      }
+
       setPay(2);
 
   };
@@ -692,7 +702,7 @@ const RegistrationForm = ({
           {qr}
           <div className="py-2"></div>
           <button
-            onClick={() => handlePay("QR")}
+            
             type="button"
             className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left "
           >
