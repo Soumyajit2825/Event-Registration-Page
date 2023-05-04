@@ -434,7 +434,7 @@ const RegistrationForm = ({
                 ? errors.mobile
                 : "border-sky-400 focus:border-blue-500"
             } `}
-            placeholder="+91-XXXXXXXXXX"
+            placeholder="XXXXXXXXXX"
             required
           />
         </div>
