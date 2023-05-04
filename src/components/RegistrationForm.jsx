@@ -7,15 +7,16 @@ import mogojastro from "../assets/mogojastro.png";
 
 
 import styled, { keyframes } from "styled-components";
-import { fadeInUp } from "react-animations";
+import { flipInX } from "react-animations";
 
-const FadeInUp = styled.div`animation: 1s ${keyframes`${fadeInUp}`}`;
+// const FadeInUp = styled.div`animation: 1s ${keyframes`${fadeInUp}`}`;
+const FlipInXAnimation = styled.div`animation: 1s ${keyframes`${flipInX}`}`;
 
 
 const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemberCount, pay, setPay }) => {
 
     
-    const [qr, setQr] = useState((<FadeInUp><img className=" bg-white w-full h-full md:h-[400px] rounded-xl " src={mogojastro} alt="Mogojastro poster" /></FadeInUp>));
+    const [qr, setQr] = useState((<FlipInXAnimation><img className=" bg-white w-full h-full md:h-[440px] rounded-xl " src={mogojastro} alt="Mogojastro poster" /></FlipInXAnimation>));
     
     const [studentData, setStudentData] = useState({
         name: "",
@@ -178,41 +179,47 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
 
         if(memberCount === 3){
             
-            setQr((prevValue) => {return <FadeInUp>
+            setQr((prevValue) => {return <>
+                        <FlipInXAnimation>
                         <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
                             <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
                                 <img className=" bg-white w-full h-full " src={QR60} alt="QR Code of member 3" />
                             </div>
                         </div>
+                        </FlipInXAnimation>
                         <a href="https://docs.google.com/forms/d/1P8QWlZP9D_ZUixLyURtxqbyfEzK1jvcHCdMraMgYKJM" target="_blank" rel="noreferrer" className=" text-center text-md mt-3">
-                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-1' >Click here to Submit the Payment Screenshot</button>
+                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-1' onClick={handlePayClickCash}> Click here to Submit the Payment Screenshot</button>
                         </a>    
-                    </FadeInUp>
+                    </>
                     })
             console.log("3");
         } else if(memberCount === 4){
-                    setQr((prevValue) => {return <FadeInUp>
+                    setQr((prevValue) => {return <>
+                        <FlipInXAnimation>
                         <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
                             <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
                                 <img className=" bg-white w-full h-full " src={QR80} alt="QR Code of member 3" />
                             </div>
                         </div>
+                        </FlipInXAnimation>
                         <a href="https://docs.google.com/forms/d/1P8QWlZP9D_ZUixLyURtxqbyfEzK1jvcHCdMraMgYKJM" target="_blank" rel="noreferrer" className=" text-center text-md mt-1">
-                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-1' >Click here to Submit the Payment Screenshot</button>
+                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-1' onClick={handlePayClickCash}>Click here to Submit the Payment Screenshot</button>
                         </a>    
-                    </FadeInUp>
+                    </>
                     })
         } else if(memberCount === 5){
-            setQr((prevValue) => {return <FadeInUp>
+            setQr((prevValue) => {return <>
+                        <FlipInXAnimation>
                         <div className='w-full rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3'>
                             <div className="flex flex-col items-center justify-center p-3 bg-[#1f1f1f] w-full rounded-xl">
                                 <img className=" bg-white w-full h-full " src={QR100} alt="QR Code of member 3" />
                             </div>
                         </div>
+                        </FlipInXAnimation>
                         <a href="https://docs.google.com/forms/d/1P8QWlZP9D_ZUixLyURtxqbyfEzK1jvcHCdMraMgYKJM" target="_blank" rel="noreferrer" className=" text-center text-md mt-3">
-                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-3' >Click here to Submit the Payment Screenshot</button>
+                            <button className='w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-3 rounded-xl mt-3' onClick={handlePayClickCash}>Click here to Submit the Payment Screenshot</button>
                         </a>    
-                    </FadeInUp>
+                    </>
                     })
         }
 
@@ -222,7 +229,7 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
         //handleSubmit()
         console.log("Cash");
         setPay(2);
-        setQr((prevValue) => {return (<FadeInUp><img className=" bg-white w-full h-full md:h-[400px]  rounded-xl " src={mogojastro} alt="Mogojastro poster" /></FadeInUp>)})
+        setQr((prevValue) => {return (<FlipInXAnimation><img className=" bg-white w-full h-full md:h-[400px]  rounded-xl " src={mogojastro} alt="Mogojastro poster" /></FlipInXAnimation>)})
     }
 
     //--------------------------------------------------------------------------------
@@ -360,13 +367,13 @@ const RegistrationForm = ({ addStudentHandler, studentList, memberCount, setMemb
     )
     } else {
         return (<>
-            <div className="flex accent-blue-600 flex-col w-[335px] px-4 py-4 sm:w-[380px] sm:px-6 sm:py-6 md:w-full md:px-8 md:py-10 rounded-xl shadow-2xl bg-gradient-to-r from-violet-500 to-indigo-500">
-                <h1 className='block mb-2 font-bold text-yellow-400 text-2xl text-center'>Team - {studentList[0].teamName}</h1>
-                <h1 className='block mb-2 font-bold text-gray-100 text-2xl text-center'>Pay the way you want</h1>
+            <div className="flex accent-blue-600 flex-col w-[335px] p-4 sm:w-[380px] sm:px-6 sm:py-6 md:w-full md:px-8 md:py-3 rounded-xl shadow-2xl bg-gradient-to-r from-violet-500 to-indigo-500">
+                <h1 className='block font-bold text-transparent bg-clip-text text-3xl text-center bg-gradient-to-t from-yellow-400 to-sky-200 '>Team  {studentList[0].teamName}</h1>
+                <h1 className='block mb-2 font-bold text-gray-100 text-xl text-center'>Pay the way you want</h1>
                 {qr}
-                <br></br>
+                <div className='py-2'></div>
                 <button onClick={handlePayClickQR} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Scan the QR and pay Online</button>
-                <br></br>
+                <div className='py-2'></div>
                 <button onClick={handlePayClickCash} type="button" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left ">Pay in Cash</button>
             </div>
         </>);
