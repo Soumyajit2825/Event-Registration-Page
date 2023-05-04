@@ -1,6 +1,6 @@
 import React from 'react'
 import maleimg from "../assets/male.png"
-import femaleimg from "../assets/female.jpeg"
+import femaleimg from "../assets/female.png"
 
 
 const BGPattern = ({gender}) => {
