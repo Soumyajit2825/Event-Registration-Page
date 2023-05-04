@@ -6,9 +6,7 @@ import mogojastro from "../assets/mogojastro.png";
 import axios from "axios";
 // import dotenv from 'dotenv';
 
-// "https://b840-2409-40e0-1010-4850-809-41b3-a956-3d5.ngrok-free.app/register" //
 const EVENT_API = import.meta.env.VITE_EVENT_API + "/register";
-
 
 
 
@@ -219,17 +217,13 @@ const RegistrationForm = ({
   //--------------------------------------------------------------------------------
 
   const handleSubmit = () => {
+    
     setPay(1);
   };
 
-  const handlePay = async (method) => {
 
-    if (method === "QR") {
-      const pay2 = () => {
-        setPay(2);
-      };
-
-      if (memberCount === 3) {
+  const displayQR = () => {
+    if (memberCount === 3) {
         setQr((prevValue) => {
           return (
             <>
@@ -324,7 +318,11 @@ const RegistrationForm = ({
           );
         });
       }
-    } else {
+  }
+
+  const handlePay = async (method) => {
+
+    if (method === "Cash") {
         setPay(3);
     setQr((prevValue) => {
       return (
@@ -702,7 +700,7 @@ const RegistrationForm = ({
           {qr}
           <div className="py-2"></div>
           <button
-            
+            onClick={() => displayQR()}
             type="button"
             className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-lg px-6 py-3 text-left "
           >
