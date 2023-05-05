@@ -244,7 +244,6 @@ const RegistrationForm = ({
 
   const handlePay = async (method) => {
 
-    let x = "online";
     if (method === "Cash") {
         setPay(3);
     setQr((prevValue) => {
@@ -258,9 +257,8 @@ const RegistrationForm = ({
         </FlipInXAnimation>
       );
     });
-    x = "offline";
 
-    }
+    } 
 
     let schema = {
         team: {
@@ -269,7 +267,7 @@ const RegistrationForm = ({
         },
         members: members(),
         payment: {
-          method: x,
+          method: "offline",
           totalAmount: memberCount * 20,
         },
       };
