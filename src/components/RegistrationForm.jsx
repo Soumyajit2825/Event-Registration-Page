@@ -54,6 +54,8 @@ const RegistrationForm = ({
     year: "1st Year",
   });
 
+  //--------------------Functions---------------------->
+
   const members = () => {
     let memberList = [];
 
@@ -213,11 +215,6 @@ const RegistrationForm = ({
 
   //--------------------------------------------------------------------------------
 
-  const handleSubmit = () => {
-    
-    setPay(1);
-  };
-
 
   const displayQR = () => {
     if (memberCount === 3) {
@@ -273,16 +270,27 @@ const RegistrationForm = ({
         },
       };
   
-      let res = await axios.post(EVENT_API, schema);
-      if(res.status !== 200){
+      try{
+        const res = await axios.post(EVENT_API, schema);
+        setPay(2);
+        // console.log(res);
+        localStorage.clear();
 
-        alert("Something went wrong, Please try again");
+      } catch (err){
+        // console.log( err);
+
+        setQr((prevValue) => {return <>
+          {prevValue}
+          <h1 className="w-full  bg-red-500 text-white p-3 rounded-xl mt-1">Something went wrong, Please try with another team name</h1>
+          </>});
       }
 
-      setPay(2);
+
+      // setPay(2);
 
   };
 
+  //--------------------------------------------------------------------------------
 
   var name, team, submit;
 
@@ -386,7 +394,7 @@ const RegistrationForm = ({
   if (memberCount >= 3) {
     submit = (
       <button
-        onClick={handleSubmit}
+        onClick={() => setPay(1)}
         type="button"
         className="text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2 text-center "
       >
