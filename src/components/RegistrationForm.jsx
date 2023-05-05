@@ -155,6 +155,7 @@ const RegistrationForm = ({
   const handleOnClick = () => {
     let f = 1;
     for (const key in studentData) {
+      if (!/^[a-zA-Z\.0-9]+@aot\.edu\.in$/.test(studentData.email)) {f=0;}
       if (studentData[key] === "" && memberCount === 0) {
         f = 0;
         setErrors((prevValue) => {
@@ -428,7 +429,7 @@ const RegistrationForm = ({
                   : "border-sky-400 focus:border-blue-500"
               } `}
               placeholder="name.title@aot.edu.in"
-              pattern="^([a-zA-Z\.\0-9]+)@aot.edu.in$"
+              pattern="^[a-zA-Z\.0-9]+@aot\.edu\.in$"
               required
             />
           </div>
