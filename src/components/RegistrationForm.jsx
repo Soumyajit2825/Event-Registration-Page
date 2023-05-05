@@ -241,7 +241,7 @@ const RegistrationForm = ({
 
   const handlePay = async (method) => {
 
-    let x = "onilne"
+    let x = "online"
     if (method === "Cash") {
         setPay(3);
     setQr((prevValue) => {
