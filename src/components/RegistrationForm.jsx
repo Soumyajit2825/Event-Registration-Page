@@ -274,7 +274,7 @@ const RegistrationForm = ({
   
       let res = await axios.post(EVENT_API, schema);
       if(res.status !== 200){
-        alert("Something went wrong, Please try again");
+        alert("Something went wrong, Please try again (Enter different team-name and retry again"");
       }
 
       setPay(2);
