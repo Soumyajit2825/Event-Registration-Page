@@ -244,6 +244,7 @@ const RegistrationForm = ({
 
   const handlePay = async (method) => {
 
+    let x = "onilne"
     if (method === "Cash") {
         setPay(3);
     setQr((prevValue) => {
@@ -257,7 +258,7 @@ const RegistrationForm = ({
         </FlipInXAnimation>
       );
     });
-
+    x = "offline";
     } 
 
     let schema = {
@@ -267,14 +268,14 @@ const RegistrationForm = ({
         },
         members: members(),
         payment: {
-          method: "offline",
+          method: x,
           totalAmount: memberCount * 20,
         },
       };
   
       let res = await axios.post(EVENT_API, schema);
       if(res.status !== 200){
-        alert("Something went wrong, Please try again (Enter different team-name and retry again"");
+        alert("Something went wrong, Please try again (Enter different team-name and retry again");
       }
 
       setPay(2);
