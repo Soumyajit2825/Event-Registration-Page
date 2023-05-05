@@ -48,14 +48,11 @@ function App() {
 
   useEffect(() => {
     const storedStudentList = JSON.parse(localStorage.getItem('studentList'));
-    if (storedStudentList != null){
-      storedStudentList = storedStudentList.list;
+    if (storedStudentList === null){
+      storedStudentList = [];
     }
 
-    if (storedStudentList.length < studentList.length){
-      console.log("storeStudentList")
-      localStorage.setItem('studentList', JSON.stringify({list: studentList}));
-    }else if (storedStudentList.length > studentList.length){
+    if (storedStudentList.length > studentList.length){
       console.log("setStudentList")
       if (storedStudentList) setStudentList(storedStudentList);
     }
