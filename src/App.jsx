@@ -47,7 +47,7 @@ function App() {
   }
 
   useEffect(() => {
-    const storedStudentList = JSON.parse(localStorage.getItem('studentList'));
+    let storedStudentList = JSON.parse(localStorage.getItem('studentList'));
     if (storedStudentList === null){
       storedStudentList = [];
     }else {
@@ -62,7 +62,7 @@ function App() {
 
 
   useEffect(() => {
-    const storedMemberCount = localStorage.getItem('memberCount');
+    let storedMemberCount = localStorage.getItem('memberCount');
     if (storedMemberCount === null){
       storedMemberCount = 0;
     }else{
