@@ -97,7 +97,7 @@ const RegistrationForm = ({
           return { ...prevValue, email: newValue };
         }
       } else if (inputName === "teamName") {
-        if (newValue && /^[A-za-z0-9_]{3,}$/.test(newValue)) {
+        if (newValue && /^[A-za-z0-9_ ]{3,}$/.test(newValue)) {
           setErrors({ ...errors, teamName: "" });
           return { ...prevValue, teamName: newValue };
         } else {
@@ -283,6 +283,7 @@ const RegistrationForm = ({
           {prevValue}
           <h1 className="w-full  bg-red-500 text-white p-3 rounded-xl mt-1">Something went wrong, Please try with another team name</h1>
           </>});
+          localStorage.clear();
       }
 
 
@@ -336,7 +337,7 @@ const RegistrationForm = ({
                 ? errors.teamName
                 : "border-sky-400 focus:border-blue-500"
             } `}
-            placeholder="Some_Thing_Cool(No blank space is allowed)"
+            placeholder="Some Thing Cool"
             required
           />
         </div>
