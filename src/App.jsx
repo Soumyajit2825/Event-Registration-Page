@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import Success from "./components/Success";
 
 
-
+// localStorage.clear();
 function App() {
 
   const [studentList, setStudentList] = useState([]);
@@ -55,8 +55,10 @@ function App() {
     }
 
     if (storedStudentList.length > studentList.length){
-      console.log("setStudentList")
+      // console.log("setStudentList")
       if (storedStudentList) setStudentList(storedStudentList);
+    }else if (storedStudentList.length < studentList.length){
+      localStorage.setItem('studentList', JSON.stringify({list: studentList}));
     }
   }, [studentList]);
 
@@ -73,7 +75,7 @@ function App() {
     if (storedMemberCount < memberCount){
       localStorage.setItem('memberCount',  memberCount);
     }else if (storedMemberCount > memberCount){
-      console.log(storedMemberCount)
+      // console.log(storedMemberCount)
       if (storedMemberCount) setMemberCount(storedMemberCount);
     }
   }, [ memberCount]);
