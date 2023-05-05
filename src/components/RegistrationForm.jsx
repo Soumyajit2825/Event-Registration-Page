@@ -276,7 +276,7 @@ const RegistrationForm = ({
   
       let res = await axios.post(EVENT_API, schema);
       if(res.status !== 200){
-        alert("Something went wrong, Please try again");
+        alert("Something went wrong, Please try again (Enter different team-name and retry again"");
       }
 
       setPay(2);
@@ -328,7 +328,7 @@ const RegistrationForm = ({
                 ? errors.teamName
                 : "border-sky-400 focus:border-blue-500"
             } `}
-            placeholder="Some_Thing_Cool"
+            placeholder="Some_Thing_Cool(No blank space is allowed)"
             required
           />
         </div>
