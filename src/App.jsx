@@ -48,7 +48,7 @@ function App() {
 
   useEffect(() => {
     const storedStudentList = JSON.parse(localStorage.getItem('studentList'));
-    if (!storedStudentList){
+    if (storedStudentList != null){
       storedStudentList = storedStudentList.list;
     }
 
