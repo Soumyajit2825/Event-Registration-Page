@@ -270,13 +270,23 @@ const RegistrationForm = ({
         },
       };
   
-      let res = await axios.post(EVENT_API, schema);
-      if(res.status !== 200){
+      try{
+        const res = await axios.post(EVENT_API, schema);
+        setPay(2);
+        // console.log(res);
+        localStorage.clear();
 
-        alert("Something went wrong, Please try again");
+      } catch (err){
+        // console.log( err);
+
+        setQr((prevValue) => {return <>
+          {prevValue}
+          <h1 className="w-full  bg-red-500 text-white p-3 rounded-xl mt-1">Something went wrong, Please try with another team name</h1>
+          </>});
       }
 
-      setPay(2);
+
+      // setPay(2);
 
   };
 

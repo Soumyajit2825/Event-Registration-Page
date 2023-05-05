@@ -105,7 +105,7 @@ const Carousel = ({ bank,  handlePay }) => {
         </div>
         </FlipInXAnimation>
         <a
-                href="https://docs.google.com/forms/d/1P8QWlZP9D_ZUixLyURtxqbyfEzK1jvcHCdMraMgYKJM"
+                // href="https://docs.google.com/forms/d/1P8QWlZP9D_ZUixLyURtxqbyfEzK1jvcHCdMraMgYKJM"
                 target="_blank"
                 rel="noreferrer"
                 className=" text-center text-md mt-3"
