@@ -54,6 +54,8 @@ const RegistrationForm = ({
     year: "1st Year",
   });
 
+  //--------------------Functions---------------------->
+
   const members = () => {
     let memberList = [];
 
@@ -213,11 +215,6 @@ const RegistrationForm = ({
 
   //--------------------------------------------------------------------------------
 
-  const handleSubmit = () => {
-    
-    setPay(1);
-  };
-
 
   const displayQR = () => {
     if (memberCount === 3) {
@@ -283,6 +280,7 @@ const RegistrationForm = ({
 
   };
 
+  //--------------------------------------------------------------------------------
 
   var name, team, submit;
 
@@ -386,7 +384,7 @@ const RegistrationForm = ({
   if (memberCount >= 3) {
     submit = (
       <button
-        onClick={handleSubmit}
+        onClick={() => setPay(1)}
         type="button"
         className="text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2 text-center "
       >
