@@ -47,8 +47,10 @@ function App() {
   }
 
   useEffect(() => {
-    const storedStudentList = JSON.parse(localStorage.getItem('studentList')).list;
-    console.log(storedStudentList)
+    const storedStudentList = JSON.parse(localStorage.getItem('studentList'));
+    if (!storedStudentList){
+      storedStudentList = storedStudentList.list;
+    }
 
     if (storedStudentList.length < studentList.length){
       console.log("storeStudentList")
@@ -62,7 +64,7 @@ function App() {
 
   useEffect(() => {
     const storedMemberCount = Number(localStorage.getItem('memberCount'));
-    console.log(storedMemberCount)
+    // console.log(storedMemberCount)
 
     if (storedMemberCount < memberCount){
       localStorage.setItem('memberCount',  memberCount);
