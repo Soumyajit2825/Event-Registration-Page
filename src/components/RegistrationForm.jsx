@@ -257,7 +257,10 @@ const RegistrationForm = ({
         </FlipInXAnimation>
       );
     });
+    method = "offline";
 
+    } else {
+      method = "online";
     }
 
     let schema = {
@@ -267,7 +270,7 @@ const RegistrationForm = ({
         },
         members: members(),
         payment: {
-          method: "offline",
+          method: method,
           totalAmount: memberCount * 20,
         },
       };
