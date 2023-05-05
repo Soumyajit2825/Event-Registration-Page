@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import RegistrationForm from "./components/RegistrationForm";
 import StudentCard from "./components/StudentCard";
@@ -13,7 +13,8 @@ function App() {
   const [memberCount, setMemberCount] = useState(0);
   const [pay, setPay] = useState(0);
 
-
+  // console.log(JSON.parse(localStorage.getItem('studentList')));
+  // console.log(JSON.parse(localStorage.getItem('memberCount')));
 
   const addStudentHandler = (memberCount, name, email, teamName, gender, mobile, branch, year) => {
 
@@ -44,9 +45,33 @@ function App() {
         return prevUser;
       }
 
+      // localStorage.setItem('studentList', JSON.stringify({"studentList": studentList}));
+      // localStorage.setItem('memberCount',  memberCount);
     })
-
   }
+
+  // useEffect(() => {
+  //   const storedStudentList = JSON.parse(localStorage.getItem('studentList'));
+  //   const storedMemberCount = JSON.parse(localStorage.getItem('memberCount'));
+  //   if (storedStudentList !== studentList && storedMemberCount !== memberCount){
+  //     localStorage.setItem('studentList', JSON.stringify(studentList));
+  //     localStorage.setItem('memberCount',  memberCount);
+  //   }
+  // }, [studentList, memberCount]);
+
+  // useEffect(() => {
+  //   const storedStudentList = JSON.parse(localStorage.getItem('studentList'));
+  //   const storedMemberCount = JSON.parse(localStorage.getItem('memberCount'));
+  //   console.log(storedStudentList, storedMemberCount)
+
+  //   if (storedStudentList !== studentList && storedMemberCount !== memberCount){
+  //     localStorage.setItem('studentList', JSON.stringify(studentList));
+  //     localStorage.setItem('memberCount',  memberCount);
+  //   }else{
+  //     if (storedStudentList) setStudentList(storedStudentList);
+  //     if (storedMemberCount) setMemberCount(storedMemberCount);
+  //   }
+  // }, [studentList, memberCount]);
 
   
 
