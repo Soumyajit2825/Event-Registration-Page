@@ -326,7 +326,7 @@ const RegistrationForm = ({
                 ? errors.teamName
                 : "border-sky-400 focus:border-blue-500"
             } `}
-            placeholder="Some_Thing_Cool"
+            placeholder="Some_Thing_Cool(No blank space is allowed)"
             required
           />
         </div>
