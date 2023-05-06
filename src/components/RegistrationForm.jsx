@@ -54,6 +54,8 @@ const RegistrationForm = ({
     year: "1st Year",
   });
 
+  //--------------------Functions---------------------->
+
   const members = () => {
     let memberList = [];
 
@@ -95,7 +97,7 @@ const RegistrationForm = ({
           return { ...prevValue, email: newValue };
         }
       } else if (inputName === "teamName") {
-        if (newValue && /^[A-za-z0-9_]{3,}$/.test(newValue)) {
+        if (newValue && /^[A-za-z0-9_ ]{3,}$/.test(newValue)) {
           setErrors({ ...errors, teamName: "" });
           return { ...prevValue, teamName: newValue };
         } else {
@@ -153,6 +155,7 @@ const RegistrationForm = ({
   const handleOnClick = () => {
     let f = 1;
     for (const key in studentData) {
+      if (!/^[a-zA-Z\.0-9]+@aot\.edu\.in$/.test(studentData.email)) {f=0;}
       if (studentData[key] === "" && memberCount === 0) {
         f = 0;
         setErrors((prevValue) => {
@@ -213,11 +216,6 @@ const RegistrationForm = ({
 
   //--------------------------------------------------------------------------------
 
-  const handleSubmit = () => {
-    
-    setPay(1);
-  };
-
 
   const displayQR = () => {
     if (memberCount === 3) {
@@ -244,7 +242,7 @@ const RegistrationForm = ({
 
   const handlePay = async (method) => {
 
-    let x = "onilne"
+    let x = "online"
     if (method === "Cash") {
         setPay(3);
     setQr((prevValue) => {
@@ -273,16 +271,28 @@ const RegistrationForm = ({
         },
       };
   
-      let res = await axios.post(EVENT_API, schema);
-      if(res.status !== 200){
+      try{
+        const res = await axios.post(EVENT_API, schema);
+        setPay(2);
+        // console.log(res);
+        localStorage.clear();
 
-        alert("Something went wrong, Please try again");
+      } catch (err){
+        // console.log( err);
+
+        setQr((prevValue) => {return <>
+          {prevValue}
+          <h1 className="w-full  bg-red-500 text-white p-3 rounded-xl mt-1">Something went wrong, Please try with another team name</h1>
+          </>});
+          localStorage.clear();
       }
 
-      setPay(2);
+
+      // setPay(2);
 
   };
 
+  //--------------------------------------------------------------------------------
 
   var name, team, submit;
 
@@ -328,7 +338,7 @@ const RegistrationForm = ({
                 ? errors.teamName
                 : "border-sky-400 focus:border-blue-500"
             } `}
-            placeholder="Some_Thing_Cool(No blank space is allowed)"
+            placeholder="Some Thing Cool"
             required
           />
         </div>
@@ -386,7 +396,7 @@ const RegistrationForm = ({
   if (memberCount >= 3) {
     submit = (
       <button
-        onClick={handleSubmit}
+        onClick={() => setPay(1)}
         type="button"
         className="text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2 text-center "
       >
@@ -419,7 +429,7 @@ const RegistrationForm = ({
                   : "border-sky-400 focus:border-blue-500"
               } `}
               placeholder="name.title@aot.edu.in"
-              pattern="^([a-zA-Z\.\0-9]+)@aot.edu.in$"
+              pattern="^[a-zA-Z\.0-9]+@aot\.edu\.in$"
               required
             />
           </div>

@@ -6,15 +6,13 @@ import Footer from "./components/Footer";
 import Success from "./components/Success";
 
 
-
+// localStorage.clear();
 function App() {
 
   const [studentList, setStudentList] = useState([]);
   const [memberCount, setMemberCount] = useState(0);
   const [pay, setPay] = useState(0);
 
-  // console.log(JSON.parse(localStorage.getItem('studentList')));
-  // console.log(JSON.parse(localStorage.getItem('memberCount')));
 
   const addStudentHandler = (memberCount, name, email, teamName, gender, mobile, branch, year) => {
 
@@ -45,33 +43,42 @@ function App() {
         return prevUser;
       }
 
-      // localStorage.setItem('studentList', JSON.stringify({"studentList": studentList}));
-      // localStorage.setItem('memberCount',  memberCount);
     })
   }
 
-  // useEffect(() => {
-  //   const storedStudentList = JSON.parse(localStorage.getItem('studentList'));
-  //   const storedMemberCount = JSON.parse(localStorage.getItem('memberCount'));
-  //   if (storedStudentList !== studentList && storedMemberCount !== memberCount){
-  //     localStorage.setItem('studentList', JSON.stringify(studentList));
-  //     localStorage.setItem('memberCount',  memberCount);
-  //   }
-  // }, [studentList, memberCount]);
+  useEffect(() => {
+    let storedStudentList = JSON.parse(localStorage.getItem('studentList'));
+    if (storedStudentList === null){
+      storedStudentList = [];
+    }else {
+      storedStudentList = storedStudentList.list;
+    }
 
-  // useEffect(() => {
-  //   const storedStudentList = JSON.parse(localStorage.getItem('studentList'));
-  //   const storedMemberCount = JSON.parse(localStorage.getItem('memberCount'));
-  //   console.log(storedStudentList, storedMemberCount)
+    if (storedStudentList.length > studentList.length){
+      // console.log("setStudentList")
+      if (storedStudentList) setStudentList(storedStudentList);
+    }else if (storedStudentList.length < studentList.length){
+      localStorage.setItem('studentList', JSON.stringify({list: studentList}));
+    }
+  }, [studentList]);
 
-  //   if (storedStudentList !== studentList && storedMemberCount !== memberCount){
-  //     localStorage.setItem('studentList', JSON.stringify(studentList));
-  //     localStorage.setItem('memberCount',  memberCount);
-  //   }else{
-  //     if (storedStudentList) setStudentList(storedStudentList);
-  //     if (storedMemberCount) setMemberCount(storedMemberCount);
-  //   }
-  // }, [studentList, memberCount]);
+
+  useEffect(() => {
+    let storedMemberCount = localStorage.getItem('memberCount');
+    if (storedMemberCount === null){
+      storedMemberCount = 0;
+    }else{
+      storedMemberCount = Number(storedMemberCount);
+    }
+    // console.log(storedMemberCount)
+
+    if (storedMemberCount < memberCount){
+      localStorage.setItem('memberCount',  memberCount);
+    }else if (storedMemberCount > memberCount){
+      // console.log(storedMemberCount)
+      if (storedMemberCount) setMemberCount(storedMemberCount);
+    }
+  }, [ memberCount]);
 
   
 
